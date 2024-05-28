@@ -13,8 +13,8 @@
   
   <title>
     
-      Tag 
-       : 程式
+      前端工程師之基礎學習 
+      
       
       |
     
@@ -104,30 +104,177 @@
 
 
       <div class="flex-container">
-        <!-- 标签详情页，展示某个标签下的文章列表，url形式：https://yoursite/tags/某个标签/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<div class="container tag-details">
-  <div class="content-title">
-    <h2>
-      <span>程式</span>
-    </h2>
-  </div>
+
+  <!-- LaTex Display -->
+
   
-    <div class="post-list">
-      <div class="post-item" title="一些簡單Hexoのpost指令">
-        <span class="time-m-d">2024-05-27</span>
-        <a href="/2024/05/27/my-first-post/">
-          <span>一些簡單Hexoのpost指令</span>
-        </a>
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">前端工程師之基礎學習</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2024-05-28 13:24:42
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E8%87%AA%E6%88%91%E6%88%90%E9%95%B7/" title="自我成長">
+                    #自我成長
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                    #前端
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
+      <div class="markdown-body">
+        <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>在今年寒假的時候偶然看到到 Huli 大大寫的文章 -&gt; <a target="_blank" rel="noopener" href="https://hulitw.medium.com/learn-coding-9c572c2fb2">這裏</a>，那時候剛好上一份實習結束，本來繼續找下一份實習，但時間有點短，就想說還是來把自己的基礎打穩，因此就開始這份計畫！</p>
+<p>依照我目前所學，我把待學清單分成三個部分</p>
+<h3 id="JavaScript-Unit-Test"><a href="#JavaScript-Unit-Test" class="headerlink" title="JavaScript &amp; Unit Test"></a>JavaScript &amp; Unit Test</h3><ul>
+<li><input checked="" disabled="" type="checkbox"> git 深入瞭解</li>
+<li><input checked="" disabled="" type="checkbox"> javascript 深入瞭解</li>
+<li><input checked="" disabled="" type="checkbox"> Jest</li>
+<li><input checked="" disabled="" type="checkbox"> JavaScript 與 DOM 以及事件機制</li>
+<li><input checked="" disabled="" type="checkbox"> 非同步與 AJAX</li>
+</ul>
+<hr>
+<h3 id="Basic-Backend"><a href="#Basic-Backend" class="headerlink" title="Basic Backend"></a>Basic Backend</h3><ul>
+<li><input checked="" disabled="" type="checkbox"> 基礎後端 PHP 與 MySQL</li>
+<li><input checked="" disabled="" type="checkbox"> 資訊安全概念</li>
+<li><input disabled="" type="checkbox"> 學習後端框架 Express</li>
+<li><input disabled="" type="checkbox"> 後端部署</li>
+</ul>
+<hr>
+<h3 id="Advanced-JavaScripts"><a href="#Advanced-JavaScripts" class="headerlink" title="Advanced JavaScripts"></a>Advanced JavaScripts</h3><ul>
+<li><input checked="" disabled="" type="checkbox"> CSS 預處理器</li>
+<li><input disabled="" type="checkbox"> 非同步歷程：callback、promise 與 async&#x2F;await</li>
+<li><input disabled="" type="checkbox"> 深入理解 JavaScript 與瀏覽器相關機制</li>
+<li><input disabled="" type="checkbox"> gulp 與 webpack</li>
+<li><input disabled="" type="checkbox"> 物件導向</li>
+</ul>
+<p>🐾 之後會陸續放上我學習的筆記 🐾<br><img src="/images/UFO.png" alt="Ya" title="Ya"></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/05/27/my-first-post/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2024-05-28 13:24:42
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E8%87%AA%E6%88%91%E6%88%90%E9%95%B7/" title="自我成長">
+                        #自我成長
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                        #前端
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
     </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-Unit-Test"><span class="toc-text">JavaScript &amp; Unit Test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-Backend"><span class="toc-text">Basic Backend</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Advanced-JavaScripts"><span class="toc-text">Advanced JavaScripts</span></a></li></ol>
+      
+    </div>
+  </div>
+
   
-  <nav class="post-navigation">
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-    <span class="page-num">1 / 1</span>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
     
-  </nav>
-</div>
+  </div>
+
 
         
 <div class="footer">
@@ -400,6 +547,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%8B%E5%9F%BA%E7%A4%8E%E5%AD%B8%E7%BF%92 + '&url=' + hhttps%3A%2F%2Fssutsen.github.io%2F2024%2F05%2F28%2F%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%8B%E5%9F%BA%E7%A4%8E%E5%AD%B8%E7%BF%92%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=hhttps://ssutsen.github.io/2024/05/28/前端工程師之基礎學習/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
