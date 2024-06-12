@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-tw" color-mode="light">
+
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="bebe" />
+  <!-- Open Graph Description 简短摘要-->
+  
+  <!-- 用于搜索引擎的文章摘要 -->
+  
+  
+  
+  <title>
+    
+      淺談ECMAScript 與 JavaScript 
+      
+      
+      |
+    
+     bebe blog
+  </title>
+
+  
+    <link rel="apple-touch-icon" href="/images/dock.png">
+    <link rel="icon" href="/images/dock.png">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1886449_67xjft27j1l.css" />
+  <!-- 代码块风格 -->
+  
+
+  <!-- jquery3.3.1 -->
+  
+    <script defer type="text/javascript" src="/plugins/jquery.min.js"></script>
+  
+
+  <!-- fancybox -->
+  
+    <link href="/plugins/jquery.fancybox.min.css" rel="stylesheet">
+    <script defer type="text/javascript" src="/plugins/jquery.fancybox.min.js"></script>
+  
+  
+<script src="/js/fancybox.js"></script>
+
+
+  
+
+  
+
+  <script>
+    var html = document.documentElement
+    const colorMode = localStorage.getItem('color-mode')
+    if (colorMode) {
+      document.documentElement.setAttribute('color-mode', colorMode)
+    }
+  </script>
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/">
+      <!-- 头像取消懒加载，添加no-lazy -->
+      
+        <img src="/images/head.png" alt="">
+      
+    </a>
+    <div class="nickname"><a href="/">bebe's blog</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">Archives</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<script src="/js/activeNav.js"></script>
+
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">淺談ECMAScript 與 JavaScript</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2024-06-12 14:43:28
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                    #前端
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/JS/" title="JS">
+                    #JS
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>我在剛開始接觸 JavaScript 的時候很常聽到 ES6 這個詞，一直都只知道他是一個類似規範的東東，也沒有實際研究過，今天就讓我們談談 ES6。</p>
+<h3 id="JavaScript-的歷史"><a href="#JavaScript-的歷史" class="headerlink" title="JavaScript 的歷史"></a>JavaScript 的歷史</h3><p>這要從 JavaScript 的歷史開始說起。在 1995 年加入 Netscape 的 Brendan Eich，接到的任務就是要開發出一個在瀏覽器上執行的程式語言，要輕量，而且要長得像 Java。為什麼要長得像 Java？因為一開始，它就是做為 Java 的輔助語言而誕生的，而這個語言暫時命名為 Mocha。</p>
+<p>因為時間緊迫的關係，Brendan Eich 花了十天打造出了 Mocha 的 prototype。而「長得像 Java」這個來自上層的需求，也影響了 JavaScript 的設計，不過除了 Java，JavaScript 也參考了 C、AWK、Scheme 以及 Self 等程式語言。</p>
+<p>在 1995 年 5 月一篇由 Netscape 所發布的新聞稿中，正式推出了 JavaScript，副標題就是：</p>
+<blockquote>
+<p>28 INDUSTRY-LEADING COMPANIES TO ENDORSE JAVASCRIPT AS A COMPLEMENT TO JAVA FOR EASY ONLINE APPLICATION DEVELOPMENT</p>
+</blockquote>
+<p>說明了 JavaScript 是為了輔助 Java 而存在。</p>
+<hr>
+<h3 id="ECMAScript"><a href="#ECMAScript" class="headerlink" title="ECMAScript"></a>ECMAScript</h3><p>ECMAScript 這個規範由 ECMA-262 所制定，由 TC39 委員審核。</p>
+<p>什麼是規範呢？ 舉例來說，我們常用的紙張有 A4, A3, B5 等等，這些尺寸就是一種規範，只要尺寸符合 29.7 * 21 公分的紙張，我們就可以稱作 A4。</p>
+<p>於 2015 年發布 ECMAScript 第六版，因此又稱 ES2015 或 ES6，在 ES6 之前的版本就稱作 ES5。現在幾乎所有主流瀏覽器都支援 ECMAScript 第六版。</p>
+<hr>
+<h3 id="ES6-語法"><a href="#ES6-語法" class="headerlink" title="ES6 語法"></a>ES6 語法</h3><h4 id="let-與-const-的差異"><a href="#let-與-const-的差異" class="headerlink" title="let 與 const 的差異"></a>let 與 const 的差異</h4><ul>
+<li>ES5：使用 var</li>
+<li>ES6：使用 let 與 const</li>
+</ul>
+<ol>
+<li><p>重複宣告：const 用於宣告常數，不會被重新賦值</p>
+</li>
+<li><p>作用域不同：<br>var：作用於整個函數範圍中（function scope）<br>let 與 const：均為區塊作用域（block scope），如此可避免污染到大括號外的變數</p>
+</li>
+</ol>
+<h4 id="解構賦值-Destructuring"><a href="#解構賦值-Destructuring" class="headerlink" title="解構賦值 Destructuring"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">解構賦值 Destructuring</a></h4><ul>
+<li>可以把陣列或物件中的資料解開擷取成為獨立變數。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = [<span class="string">&quot;one&quot;</span>, <span class="string">&quot;two&quot;</span>, <span class="string">&quot;three&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [red, yellow, green] = foo;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(red); <span class="comment">// &quot;one&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(yellow); <span class="comment">// &quot;two&quot;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(green); <span class="comment">// &quot;three&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="箭頭函式-Arrow-Function"><a href="#箭頭函式-Arrow-Function" class="headerlink" title="箭頭函式 Arrow Function"></a>箭頭函式 Arrow Function</h4><ul>
+<li>簡化程式碼</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="title function_">sum</span> = (<span class="params">a, b</span>) =&gt; &#123;  <span class="comment">// 大括號表示開始一個多行函數</span></span><br><span class="line">  <span class="keyword">let</span> result = a + b;</span><br><span class="line">  <span class="keyword">return</span> result; <span class="comment">// 如果我們使用了大括號，那麼我們需要一個 “return”</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>( <span class="title function_">sum</span>(<span class="number">1</span>, <span class="number">2</span>) ); <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line">= <span class="keyword">let</span> <span class="title function_">sum</span> = (<span class="params">a, b</span>) =&gt; (a+b);<span class="comment">//可簡化（如果只有return指令）</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="模組-Module"><a href="#模組-Module" class="headerlink" title="模組 Module"></a>模組 Module</h4><ul>
+<li>單一程式切割為多個檔案，每個程式檔案稱之為模組<blockquote>
+<p>模組有各自的名稱空間，互不影響</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="模板字串符-Template-Literals"><a href="#模板字串符-Template-Literals" class="headerlink" title="模板字串符 Template Literals"></a>模板字串符 Template Literals</h4><p>Template 的意思是樣板。Template Literals 可用於字串拼接。</p>
+<p>ES5</p>
+<ul>
+<li>使用單引號（’’）或雙引號（””）</li>
+<li>缺點：必須用 + 或 , 來串接字串，且無法換行</li>
+</ul>
+<p>ES6</p>
+<ul>
+<li>使用反引號（&#96;&#96;）</li>
+<li>優點：可用於多行字串拼接，也可在反引號中放入 ${變數}</li>
+</ul>
+<h4 id="展開運算子-Spread-Operator"><a href="#展開運算子-Spread-Operator" class="headerlink" title="展開運算子 Spread Operator"></a>展開運算子 Spread Operator</h4><ul>
+<li>使用 … 運算子，展開陣列或物件</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> q1 = [<span class="string">&quot;Jan&quot;</span>, <span class="string">&quot;Feb&quot;</span>, <span class="string">&quot;Mar&quot;</span>];</span><br><span class="line"><span class="keyword">const</span> q2 = [<span class="string">&quot;Apr&quot;</span>, <span class="string">&quot;May&quot;</span>, <span class="string">&quot;Jun&quot;</span>];</span><br><span class="line"><span class="keyword">const</span> q3 = [<span class="string">&quot;Jul&quot;</span>, <span class="string">&quot;Aug&quot;</span>, <span class="string">&quot;Sep&quot;</span>];</span><br><span class="line"><span class="keyword">const</span> q4 = [<span class="string">&quot;Oct&quot;</span>, <span class="string">&quot;Nov&quot;</span>, <span class="string">&quot;May&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> year = [...q1, ...q2, ...q3, ...q4];</span><br></pre></td></tr></table></figure>
+
+<h4 id="Rest-Parameters-其餘參數"><a href="#Rest-Parameters-其餘參數" class="headerlink" title="Rest Parameters 其餘參數"></a>Rest Parameters 其餘參數</h4><ul>
+<li>使用 <code>…</code> 運算子，集合剩餘的元素變成陣列，就可以在不確定陣列長度的情況下，傳入參數。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">...args</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> arg <span class="keyword">of</span> args) sum += arg;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> x = <span class="title function_">sum</span>(<span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>, <span class="number">29</span>, <span class="number">100</span>, <span class="number">66</span>, <span class="number">77</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Default-Parameters-設定參數預設值"><a href="#Default-Parameters-設定參數預設值" class="headerlink" title="Default Parameters 設定參數預設值"></a>Default Parameters 設定參數預設值</h4><ul>
+<li>使用函式的時候，可以幫那些參數加上一個預設值</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myFunction</span>(<span class="params">x, y = <span class="number">10</span></span>) &#123;</span><br><span class="line">  <span class="comment">// y is 10 if not passed or undefined</span></span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">myFunction</span>(<span class="number">5</span>); <span class="comment">// will return 15</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>上面大概介紹一些比較常用 ES6 的更新，如果想看更多可以去<a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_es6.asp">w3schools</a></p>
+<hr>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://blog.huli.tw/2022/01/15/js-history/#more">從歷史開始認識 JavaScript</a><br><a target="_blank" rel="noopener" href="https://f2e.kalan.dev/javascript-basic/2.html">淺談 ECMAScript 與 JavaScript</a><br><a target="_blank" rel="noopener" href="https://hackmd.io/@Heidi-Liu/note-js102-es6#%E5%AE%A3%E5%91%8A%E8%AE%8A%E6%95%B8-let-%E8%88%87-const">[week 3] JavaScript：ES6 語法</a></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/05/28/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%8B%E5%9F%BA%E7%A4%8E%E5%AD%B8%E7%BF%92/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2024-06-12 14:43:28
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                        #前端
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/JS/" title="JS">
+                        #JS
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-%E7%9A%84%E6%AD%B7%E5%8F%B2"><span class="toc-text">JavaScript 的歷史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ECMAScript"><span class="toc-text">ECMAScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6-%E8%AA%9E%E6%B3%95"><span class="toc-text">ES6 語法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#let-%E8%88%87-const-%E7%9A%84%E5%B7%AE%E7%95%B0"><span class="toc-text">let 與 const 的差異</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%A7%8B%E8%B3%A6%E5%80%BC-Destructuring"><span class="toc-text">解構賦值 Destructuring</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F-Arrow-Function"><span class="toc-text">箭頭函式 Arrow Function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E7%B5%84-Module"><span class="toc-text">模組 Module</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E5%AD%97%E4%B8%B2%E7%AC%A6-Template-Literals"><span class="toc-text">模板字串符 Template Literals</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%95%E9%96%8B%E9%81%8B%E7%AE%97%E5%AD%90-Spread-Operator"><span class="toc-text">展開運算子 Spread Operator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rest-Parameters-%E5%85%B6%E9%A4%98%E5%8F%83%E6%95%B8"><span class="toc-text">Rest Parameters 其餘參數</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Default-Parameters-%E8%A8%AD%E5%AE%9A%E5%8F%83%E6%95%B8%E9%A0%90%E8%A8%AD%E5%80%BC"><span class="toc-text">Default Parameters 設定參數預設值</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
+      </div>
+    
+  </div>
+
+
+        
+<div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          
+              <a title="github" target="_blank" rel="noopener" href="https://github.com/ssutsen">
+                <i class="iconfont icon-github"></i>
+              </a>
+              
+        </li>
+        
+        <li>
+          
+            <a title="email" href="mailto:babe920604@gmail.com">
+              <i class="iconfont icon-envelope"></i>
+            </a>
+            
+        </li>
+        
+        <li>
+          
+              <a title="website" href="https://ssutsen.github.io/web/CV/">
+                <i class="iconfont icon-globe"></i>
+              </a>
+              
+        </li>
+        
+    </ul>
+  </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Copyright © 2024 ssutsen</a>
+        
+    </div>
+  
+    
+    <div class="footer-more">
+      
+        <a target="_blank" rel="noopener" href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+        
+    </div>
+  
+  
+</div>
+
+      </div>
+
+      <div class="tools-bar">
+        <div class="back-to-top tools-bar-item hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+
+<script src="/js/backtotop.js"></script>
+
+
+
+        
+  <div class="search-icon tools-bar-item" id="search-icon">
+    <a href="javascript: void(0)">
+      <i class="iconfont icon-search"></i>
+    </a>
+  </div>
+
+  <div class="search-overlay hidden">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-search"></i>
+          </a>
+        </span>
+        
+          <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        
+        <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <i class="iconfont icon-close"></i>
+          </a>
+        </span>
+      </div>
+      <div class="search-result" id="search-result"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
+
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
+    }
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        document.body.classList.add('hidden')
+        // inputArea.focus()
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        document.body.classList.remove('hidden')
+      }
+    }
+
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+        
+  <div class="tools-bar-item theme-icon" id="switch-color-scheme">
+    <a href="javascript: void(0)">
+      <i id="theme-icon" class="iconfont icon-moon"></i>
+    </a>
+  </div>
+
+  
+<script src="/js/colorscheme.js"></script>
+
+
+
+
+
+        
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E6%B7%BA%E8%AB%87ECMAScript%20%E8%88%87%20JavaScript + '&url=' + hhttps%3A%2F%2Fssutsen.github.io%2F2024%2F06%2F12%2F%E6%B7%BA%E8%AB%87ECMAScript-%E8%88%87-JavaScript%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=hhttps://ssutsen.github.io/2024/06/12/淺談ECMAScript-與-JavaScript/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
+  
+  
+<script src="/js/shares.js"></script>
+
+
+
+      </div>
+    </div>
+  </body>
+</html>
