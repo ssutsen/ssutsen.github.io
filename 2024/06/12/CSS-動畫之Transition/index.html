@@ -13,7 +13,7 @@
   
   <title>
     
-      Archives 
+      CSS 動畫之 Transition 
       
       
       |
@@ -104,77 +104,164 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2024</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">CSS 動畫之 Transition</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2024-06-16 17:22:31
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/CSS/" title="CSS">
+                    #CSS
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>CSS 動畫是我一直想要學的主題之一，看到很多網站都有超酷的 loading 動畫讓我也想要做一個會攘人想多看兩眼的轉場動畫！話不多說直接進介紹 👇</p>
+<p>在 CSS3 有三個動畫屬性，分別為 transition 和 animation 和 transform</p>
+<p><code>Transition</code> | 基礎的動畫效果，強調 CSS 屬性的過渡動畫 | CSS 屬性變化</p>
+<p><code>Animation</code> | 細節複雜的動畫效果，強調 CSS 屬性的流程與控制，可加 keyframes | CSS 屬性變化</p>
+<p><code>Transform</code> | 控制 html 元素的旋轉、縮放、移動等等 | HTML 元素(包含內容)變化</p>
+<h3 id="Transition-屬性"><a href="#Transition-屬性" class="headerlink" title="Transition 屬性"></a>Transition 屬性</h3><ul>
+<li><p><code>transition-property</code> 指定要轉換的 CSS 屬性</p>
+</li>
+<li><p><code>transition-delay</code> 延後多久（s 或 ms）來執行（預設 0）</p>
+</li>
+<li><p><code>transition-duration</code> 執行時間（s 或 ms）（預設 0）</p>
+</li>
+<li><p><code>transition-timing-function</code> 轉換時的速度曲線（預設 ease）</p>
+</li>
+</ul>
+<p>這張圖列出幾個 transition-timing-function 比較常用的屬性值<br><img src="/images/Transition-2.png" alt="transition-timing-function" title="Transition"><br>這邊就不多做介紹，如果想更深入了解可以參考 -&gt; <a href="%22https://developer.mozilla.org/zh-TW/docs/Web/CSS/transition-timing-function">MDN</a></p>
+<h3 id="Transition-語法＆示範"><a href="#Transition-語法＆示範" class="headerlink" title="Transition 語法＆示範"></a>Transition 語法＆示範</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transition: property | duration | timing-function | delay;</span><br></pre></td></tr></table></figure>
+
+<p>可以比較左邊和右邊方塊差一秒的延遲時間</p>
+<p><img src="/images/test2.gif" alt="Transition" title="Transition"></p>
+<p>一次可以改變多種屬性！</p>
+<p><img src="/images/muti.gif" alt="Transition" title="Transition"></p>
+<hr>
+<p>下一篇會來介紹 Animation</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/06/12/JavaScript-%E9%99%A3%E5%88%97%E5%B8%B8%E8%A6%8B%E6%93%8D%E4%BD%9C/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2024-06-16 17:22:31
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/CSS/" title="CSS">
+                        #CSS
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
       
-      <div class="post-item" title="CSS 動畫之 Transition">
-        <div class="time-m-d">06-12</div>
-        <div class="title">
-          <a href="/2024/06/12/CSS-%E5%8B%95%E7%95%AB%E4%B9%8BTransition/">
-            <span>CSS 動畫之 Transition</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="JavaScript 陣列常見操作">
-        <div class="time-m-d">06-12</div>
-        <div class="title">
-          <a href="/2024/06/12/JavaScript-%E9%99%A3%E5%88%97%E5%B8%B8%E8%A6%8B%E6%93%8D%E4%BD%9C/">
-            <span>JavaScript 陣列常見操作</span>
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transition-%E5%B1%AC%E6%80%A7"><span class="toc-text">Transition 屬性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transition-%E8%AA%9E%E6%B3%95%EF%BC%86%E7%A4%BA%E7%AF%84"><span class="toc-text">Transition 語法＆示範</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="淺談ECMAScript 與 JavaScript">
-        <div class="time-m-d">06-12</div>
-        <div class="title">
-          <a href="/2024/06/12/%E6%B7%BA%E8%AB%87ECMAScript-%E8%88%87-JavaScript/">
-            <span>淺談ECMAScript 與 JavaScript</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="前端工程師之基礎學習">
-        <div class="time-m-d">05-28</div>
-        <div class="title">
-          <a href="/2024/05/28/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%8B%E5%9F%BA%E7%A4%8E%E5%AD%B8%E7%BF%92/">
-            <span>前端工程師之基礎學習</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="一些簡單Hexoのpost指令">
-        <div class="time-m-d">05-27</div>
-        <div class="title">
-          <a href="/2024/05/27/my-first-post/">
-            <span>一些簡單Hexoのpost指令</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">05-27</div>
-        <div class="title">
-          <a href="/2024/05/27/hello-world/">
-            <span>Hello World</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
@@ -447,6 +534,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + CSS%20%E5%8B%95%E7%95%AB%E4%B9%8B%20Transition + '&url=' + hhttps%3A%2F%2Fssutsen.github.io%2F2024%2F06%2F12%2FCSS-%E5%8B%95%E7%95%AB%E4%B9%8BTransition%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=hhttps://ssutsen.github.io/2024/06/12/CSS-動畫之Transition/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
