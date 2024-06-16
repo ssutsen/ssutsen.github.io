@@ -13,7 +13,7 @@
   
   <title>
     
-      前端工程師之基礎學習 
+      CSS 動畫之 Transform 
       
       
       |
@@ -149,25 +149,19 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">前端工程師之基礎學習</div>
+      <div class="post-title">CSS 動畫之 Transform</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2024-05-28 13:24:42
+          2024-06-16 23:23:26
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags mr-10" title="Tags"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/%E8%87%AA%E6%88%91%E6%88%90%E9%95%B7/" title="自我成長">
-                    #自我成長
-                  </a>
-                </span>
-                
-                <span class="span--tag mr-8">
-                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
-                    #前端
+                  <a href="/tags/CSS/" title="CSS">
+                    #CSS
                   </a>
                 </span>
                 
@@ -175,38 +169,64 @@
           
       </div>
       <div class="markdown-body">
-        <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>在今年寒假的時候偶然看到到 Huli 大大寫的文章 -&gt; <a target="_blank" rel="noopener" href="https://hulitw.medium.com/learn-coding-9c572c2fb2">這裏</a>，那時候剛好上一份實習結束，本來繼續找下一份實習，但時間有點短，就想說還是來把自己的基礎打穩，因此就開始這份計畫！</p>
-<p>依照我目前所學，我把待學清單分成三個部分</p>
-<h3 id="JavaScript-Unit-Test"><a href="#JavaScript-Unit-Test" class="headerlink" title="JavaScript &amp; Unit Test"></a>JavaScript &amp; Unit Test</h3><ul>
-<li><input checked="" disabled="" type="checkbox"> git 深入瞭解</li>
-<li><input checked="" disabled="" type="checkbox"> javascript 深入瞭解</li>
-<li><input checked="" disabled="" type="checkbox"> Jest</li>
-<li><input checked="" disabled="" type="checkbox"> JavaScript 與 DOM 以及事件機制</li>
-<li><input checked="" disabled="" type="checkbox"> 非同步與 AJAX</li>
+        <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>終於來到最後一篇 🫠<br>最後壓軸登場的是 Transition，可以再細分成 2D 和 3D，走起介紹囉！</p>
+<h3 id="2D-Transition-屬性"><a href="#2D-Transition-屬性" class="headerlink" title="2D Transition 屬性"></a>2D Transition 屬性</h3><ul>
+<li><code>translate()</code> 位移</li>
+<li><code>rotate()</code> 旋轉</li>
+<li><code>scale()</code> 縮放</li>
+<li><code>skew()</code> 傾斜</li>
+<li><code>matrix()</code> 依變形矩陣的 6 個參數值產生 2D 變形</li>
 </ul>
+<h3 id="2D-Transition-語法＆示範"><a href="#2D-Transition-語法＆示範" class="headerlink" title="2D Transition 語法＆示範"></a>2D Transition 語法＆示範</h3><h4 id="translate"><a href="#translate" class="headerlink" title="translate"></a>translate</h4><ul>
+<li>單位可以用<code>px</code>或<code>%</code></li>
+<li>如果只寫一個參數，省略的第 2 個參數會視為 0，也就是只有 X 軸的移動距離</li>
+<li>可細分為 X 軸與 Y 軸的位移，屬性如下：<code>translateX()</code> 、 <code>translateY()</code></li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">20px</span>, <span class="number">30px</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.a</span> &#123;</span><br><span class="line">  <span class="attribute">transition</span>: transform <span class="number">1s</span> ease;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/translate.gif" alt="translate" title="translate"></p>
+<h4 id="rotate"><a href="#rotate" class="headerlink" title="rotate"></a>rotate</h4><ul>
+<li>單位用<code>deg</code>，正值&#x3D;順時針旋轉，負值&#x3D;逆時針旋轉</li>
+<li>沒有指定基準點就是以<strong>中心點</strong>為基準</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">60deg</span>);</span><br><span class="line">  <span class="attribute">transform-origin</span>: top left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*以下省略皆跟第一個一樣*/</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/rotate.gif" alt="rotate" title="rotate"></p>
+<h4 id="scale"><a href="#scale" class="headerlink" title="scale"></a>scale</h4><ul>
+<li>單位無，為倍數值</li>
+<li>沒有指定基準點就是以<strong>中心點</strong>為基準</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">1.2</span>);</span><br><span class="line">  <span class="comment">/* transform-origin: top left; */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*以下省略皆跟第一個一樣*/</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/scale.gif" alt="scale" title="scale"></p>
+<h4 id="skew"><a href="#skew" class="headerlink" title="skew"></a>skew</h4><ul>
+<li>單位用<code>deg</code></li>
+<li>沒有指定基準點就是以<strong>中心點</strong>為基準</li>
+<li>可細分為 X 軸與 Y 軸的縮放，屬性如下：<code>skewX()</code>、<code>skewY()</code></li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">skew</span>(<span class="number">30deg</span>, <span class="number">10deg</span>);</span><br><span class="line">  <span class="attribute">transform-origin</span>: top left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*以下省略皆跟第一個一樣*/</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/skew.gif" alt="skew" title="skew"></p>
+<h4 id="matrix"><a href="#matrix" class="headerlink" title="matrix"></a>matrix</h4><p>結合以上屬性來做 2D Transform<br><code>matrix(a, b, c, d, e, f);</code><br>參數 a 和 d：控制元素的縮放<br>參數 b 和 c：控制元素的傾斜或斜切<br>參數 e 和 f：控制元素的平移</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">60deg</span>);</span><br><span class="line">  <span class="attribute">transform-origin</span>: top left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*以下省略皆跟第一個一樣*/</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/matrix.gif" alt="matrix" title="matrix"></p>
 <hr>
-<h3 id="Basic-Backend"><a href="#Basic-Backend" class="headerlink" title="Basic Backend"></a>Basic Backend</h3><ul>
-<li><input checked="" disabled="" type="checkbox"> 基礎後端 PHP 與 MySQL</li>
-<li><input checked="" disabled="" type="checkbox"> 資訊安全概念</li>
-<li><input disabled="" type="checkbox"> 學習後端框架 Express</li>
-<li><input disabled="" type="checkbox"> 後端部署</li>
-</ul>
+<h3 id="3D-Transform"><a href="#3D-Transform" class="headerlink" title="3D Transform"></a>3D Transform</h3><p>這邊介紹一個最常見、最常用的屬性<code>rotateX</code>、<code>rotateY</code>、<code>rotateZ</code><br>跟 2D 的寫法類似，但多一個 z 軸<br>下面示範旋轉 x 軸和 y 軸</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">rotateX</span>(<span class="number">150deg</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.b</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">90deg</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*以下省略皆跟第一個一樣*/</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/rotate3D.gif" alt="rotate3D" title="rotate3D"></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/css/css3_3dtransforms.asp">w3schools</a>有更詳細的的介紹 3D Transform</p>
 <hr>
-<h3 id="Advanced-JavaScripts"><a href="#Advanced-JavaScripts" class="headerlink" title="Advanced JavaScripts"></a>Advanced JavaScripts</h3><ul>
-<li><input checked="" disabled="" type="checkbox"> CSS 預處理器</li>
-<li><input disabled="" type="checkbox"> 非同步歷程：callback、promise 與 async&#x2F;await</li>
-<li><input disabled="" type="checkbox"> 深入理解 JavaScript 與瀏覽器相關機制</li>
-<li><input disabled="" type="checkbox"> gulp 與 webpack</li>
-<li><input disabled="" type="checkbox"> 物件導向</li>
-</ul>
-<p>🐾 之後會陸續放上我學習的筆記 🐾<br><img src="/images/UFO.png" alt="Ya" title="Ya"></p>
+<p>我們成功了，相信大家對 CSS 動畫一定有更深入的瞭解了！<br>那動畫的介紹就到這邊告一段落了 🔚<br>最後附上一個已經有人寫好的 CSS animation 套件 <a target="_blank" rel="noopener" href="https://animate.style/">Animate.css</a>，上面有很多現成的動畫這樣就不用自己辛苦的手刻動畫啦（已經學到這邊的我 🥲）</p>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://www.w3schools.com/css/css3_3dtransforms.asp">w3schools</a><br><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10200713">CSS 動畫-2D Transform</a></p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/05/27/my-first-post/" target="_self">
+              <a href="/2024/06/16/CSS-%E5%8B%95%E7%95%AB%E4%B9%8B-Animation/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>Prev</span>
               </a>
@@ -215,21 +235,15 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-              2024-05-28 13:24:42
+              2024-06-16 23:23:26
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags mr-10" title="Tags"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/%E8%87%AA%E6%88%91%E6%88%90%E9%95%B7/" title="自我成長">
-                        #自我成長
-                      </a>
-                    </span>
-                    
-                    <span class="span--tag mr-8">
-                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
-                        #前端
+                      <a href="/tags/CSS/" title="CSS">
+                        #CSS
                       </a>
                     </span>
                     
@@ -237,11 +251,6 @@
               
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2024/06/12/%E6%B7%BA%E8%AB%87ECMAScript-%E8%88%87-JavaScript/" target="_self">
-                <span>Next</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -255,7 +264,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript-Unit-Test"><span class="toc-text">JavaScript &amp; Unit Test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-Backend"><span class="toc-text">Basic Backend</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Advanced-JavaScripts"><span class="toc-text">Advanced JavaScripts</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2D-Transition-%E5%B1%AC%E6%80%A7"><span class="toc-text">2D Transition 屬性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2D-Transition-%E8%AA%9E%E6%B3%95%EF%BC%86%E7%A4%BA%E7%AF%84"><span class="toc-text">2D Transition 語法＆示範</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#translate"><span class="toc-text">translate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rotate"><span class="toc-text">rotate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#scale"><span class="toc-text">scale</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#skew"><span class="toc-text">skew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#matrix"><span class="toc-text">matrix</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3D-Transform"><span class="toc-text">3D Transform</span></a></li></ol>
       
     </div>
   </div>
@@ -559,12 +568,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%8B%E5%9F%BA%E7%A4%8E%E5%AD%B8%E7%BF%92 + '&url=' + hhttps%3A%2F%2Fssutsen.github.io%2F2024%2F05%2F28%2F%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%8B%E5%9F%BA%E7%A4%8E%E5%AD%B8%E7%BF%92%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + CSS%20%E5%8B%95%E7%95%AB%E4%B9%8B%20Transform + '&url=' + hhttps%3A%2F%2Fssutsen.github.io%2F2024%2F06%2F16%2FCSS-%E5%8B%95%E7%95%AB%E4%B9%8B-Transform%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=hhttps://ssutsen.github.io/2024/05/28/前端工程師之基礎學習/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=hhttps://ssutsen.github.io/2024/06/16/CSS-動畫之-Transform/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
