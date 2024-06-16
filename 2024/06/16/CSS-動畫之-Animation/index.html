@@ -13,7 +13,7 @@
   
   <title>
     
-      CSS 動畫之 Transition 
+      CSS 動畫之 Animation 
       
       
       |
@@ -149,11 +149,11 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">CSS 動畫之 Transition</div>
+      <div class="post-title">CSS 動畫之 Animation</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2024-06-16 18:37:56
+          2024-06-16 20:51:15
         </span>
         
               <span class="post-tags">
@@ -169,38 +169,75 @@
           
       </div>
       <div class="markdown-body">
-        <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>CSS 動畫是我一直想要學的主題之一，看到很多網站都有超酷的 loading 動畫讓我也想要做一個會攘人想多看兩眼的轉場動畫！話不多說直接進介紹 👇</p>
-<p>在 CSS3 有三個動畫屬性，分別為 transition 和 animation 和 transform</p>
-<p><code>Transition</code> | 基礎的動畫效果，強調 CSS 屬性的過渡動畫 | CSS 屬性變化</p>
-<p><code>Animation</code> | 細節複雜的動畫效果，強調 CSS 屬性的流程與控制，可加 keyframes | CSS 屬性變化</p>
-<p><code>Transform</code> | 控制 html 元素的旋轉、縮放、移動等等 | HTML 元素(包含內容)變化</p>
-<h3 id="Transition-屬性"><a href="#Transition-屬性" class="headerlink" title="Transition 屬性"></a>Transition 屬性</h3><ul>
-<li><p><code>transition-property</code> 指定要轉換的 CSS 屬性</p>
-</li>
-<li><p><code>transition-delay</code> 延後多久（s 或 ms）來執行（預設 0）</p>
-</li>
-<li><p><code>transition-duration</code> 執行時間（s 或 ms）（預設 0）</p>
-</li>
-<li><p><code>transition-timing-function</code> 轉換時的速度曲線（預設 ease）</p>
-</li>
-</ul>
-<p>這張圖列出幾個 transition-timing-function 比較常用的屬性值<br><img src="/images/Transition-2.png" alt="transition-timing-function" title="Transition"><br>這邊就不多做介紹，如果想更深入了解可以參考 -&gt; <a href="%22https://developer.mozilla.org/zh-TW/docs/Web/CSS/transition-timing-function">MDN</a></p>
-<h3 id="Transition-語法＆示範"><a href="#Transition-語法＆示範" class="headerlink" title="Transition 語法＆示範"></a>Transition 語法＆示範</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transition</span>: property | duration | timing-function | delay;</span><br></pre></td></tr></table></figure>
+        <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>介紹完了 transition，如果有些動畫還是做不出來，那麼用 animation 就對了</p>
+<p>那就開始吧 🐾</p>
+<h3 id="keyframes-關鍵影格"><a href="#keyframes-關鍵影格" class="headerlink" title="@keyframes 關鍵影格"></a>@keyframes 關鍵影格</h3><p>透過許多關鍵影格的組合，動畫的漸變過程</p>
+<p>在 CSS 動畫裡，<strong>from</strong> 表示起始，也可以用 <strong>0%</strong> 表示，<strong>to</strong> 表示結束，也可以用 <strong>100%</strong> 表示<br>數值範圍是 0%~100%</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> mymove &#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123;<span class="attribute">top</span>: <span class="number">0px</span>;&#125;</span><br><span class="line">  <span class="selector-tag">to</span> &#123;<span class="attribute">top</span>: <span class="number">200px</span>;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>可以比較左邊和右邊方塊差一秒的延遲時間</p>
-<p><img src="/images/test2.gif" alt="Transition" title="Transition"></p>
-<p>一次可以改變多種屬性！</p>
-<p><img src="/images/muti.gif" alt="Transition" title="Transition"></p>
+<p>不可單獨使用數字，一定要加入 %</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> mymove &#123;</span><br><span class="line">  <span class="number">0%</span>   &#123;<span class="attribute">top</span>: <span class="number">0px</span>; <span class="attribute">width</span>: <span class="number">100px</span>;&#125;</span><br><span class="line">  <span class="number">25%</span>  &#123;<span class="attribute">top</span>: <span class="number">200px</span>; <span class="attribute">width</span>: <span class="number">80px</span>;&#125;</span><br><span class="line">  <span class="number">50%</span>  &#123;<span class="attribute">top</span>: <span class="number">100px</span>; <span class="attribute">width</span>: <span class="number">60px</span>;&#125;</span><br><span class="line">  <span class="number">75%</span>  &#123;<span class="attribute">top</span>: <span class="number">200px</span>; <span class="attribute">width</span>: <span class="number">40px</span>;&#125;</span><br><span class="line">  <span class="number">100%</span> &#123;<span class="attribute">top</span>: <span class="number">0px</span>; <span class="attribute">width</span>: <span class="number">20px</span>;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Animation-屬性"><a href="#Animation-屬性" class="headerlink" title="Animation 屬性"></a>Animation 屬性</h3><ul>
+<li><code>animation-name</code> @keyframe 動畫名稱(可以自行取名)</li>
+<li><code>animation-duration</code> 動畫播放一次需要的時間（s 或 ms）（預設 0）</li>
+<li><code>animation-delay</code> 延後多久（s 或 ms）播放動畫（預設 0）</li>
+<li><code>animation-iteration-count</code> 動畫播放次數（預設 1）</li>
+<li><code>animation-direction</code> 動畫播放方向（預設 normal）</li>
+<li><code>animation-timing-function</code> 動畫播放的速度曲線（預設 ease）</li>
+<li><code>animation-fill-mode</code> 動畫播放前後狀態（預設 none）</li>
+</ul>
+<h3 id="Animation-語法＆示範"><a href="#Animation-語法＆示範" class="headerlink" title="Animation 語法＆示範"></a>Animation 語法＆示範</h3><p>縮寫</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">animation</span>:name duration | timing-function | delay | iteration-count | direction | fill-mode;</span><br></pre></td></tr></table></figure>
+
 <hr>
-<p>下一篇會來介紹 Animation</p>
-<p>參考資料：<br><a href="%22https://www.w3schools.com/css/css3_transitions.asp%22">w3schools</a><br><a href="%22https://www.youtube.com/watch?v=3suhl9V4xOY%22">15 分钟学会 css 动画</a><br><a href="%22https://ithelp.ithome.com.tw/articles/10200365%22">CSS 動畫-Transition</a></p>
+<p>這邊比較三種不同 duration 時間和 timing-function(在<a href="%22https://ssutsen.github.io/2024/06/12/CSS-%E5%8B%95%E7%95%AB%E4%B9%8BTransition/%22">上一篇</a>有介紹過)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> move &#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">0px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">to</span> &#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">400px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.a</span> &#123;<span class="attribute">animation</span>: move <span class="number">10s</span> ease;&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.b</span> &#123;<span class="attribute">animation</span>: move <span class="number">5s</span> linear;&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.c</span> &#123;<span class="attribute">animation</span>: move <span class="number">2s</span> ease-in-out;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/duration.gif" alt="duration" title="duration"></p>
+<hr>
+<p>再來講一下在 transition 中沒有的屬性 animation-direction</p>
+<ul>
+<li><code>normal</code>：正常播放，從 0% 到 100% ( 預設值 )。</li>
+<li><code>reverse</code>：反轉播放，從 100% 到 0%。</li>
+<li><code>alternate</code>：正反轉輪流播放，奇數次為 0% 到 100%，偶數次為 100% 到 0%，若動畫播放次數只有一次就只會正常播放。</li>
+<li><code>alternate-reverse</code>：alternate 的相反，奇數次為 100% 到 0%，偶數次為 0% 到 100%，若動畫播放次數只有一次就只會反轉播放。</li>
+</ul>
+<p>我們來比較一下 normal 和 alternate</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: color <span class="number">2s</span> ease infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/direction.gif" alt="direction" title="direction"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: color <span class="number">2s</span> ease infinite alternate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/direction2.gif" alt="direction" title="direction"></p>
+<p>有看出差異嗎～ alternate 有點類似來回動作，normal 就是從頭開始在播放</p>
+<hr>
+<p>最後來看 animation-fill-mode</p>
+<ul>
+<li><code>none</code>：預設值，不論動畫播放次數，結束後一律返回原始狀態。</li>
+<li><code>forwards</code>：動畫結束後，保持在最後一個影格狀態。</li>
+<li><code>backwards</code>：動畫結束後，保持在第一個影格狀態 ( 但實際測試和 none 效果一樣 )。</li>
+<li><code>both</code>：依據動畫的次數或播放方向，保持在第一個影格或最後一個影格狀態，相當實用。</li>
+</ul>
+<p>我們比較預設值和 both 的差異（因為是 gif 所以可能有點難看出差異？）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: color <span class="number">1s</span> ease <span class="number">3</span> alternate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/fill.gif" alt="fill" title="fill"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.a</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: color <span class="number">1s</span> ease <span class="number">3</span> alternate both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/fill2.gif" alt="fill" title="fill"></p>
+<p>在預設值中，動畫結束後會返回一開始的狀況（以上面例子來看是紅色）<br>在 both 下，動畫結束後會停在最後一個影格（以上面例子來說，動畫來回三次，最後一格是停在紫色）</p>
+<hr>
+<p>今天講了在 animation 中最常用的屬性，看完介紹後要一定自己實作看看，來熟悉動畫！</p>
+<p>下一篇就是最後一篇ㄌ，來講 Transform 👉</p>
+<p>參考資料：<br><a href="%22https://www.w3schools.com/css/css3_animations.asp%22">w3schools</a><br><a href="%22https://www.oxxostudio.tw/articles/201803/css-animation.html%22">完整解析 CSS 動畫</a></p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/06/12/JavaScript-%E9%99%A3%E5%88%97%E5%B8%B8%E8%A6%8B%E6%93%8D%E4%BD%9C/" target="_self">
+              <a href="/2024/06/12/CSS-%E5%8B%95%E7%95%AB%E4%B9%8BTransition/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>Prev</span>
               </a>
@@ -209,7 +246,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-              2024-06-16 18:37:56
+              2024-06-16 20:51:15
             </span>
             
                   <span class="post-tags">
@@ -226,11 +263,6 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2024/06/16/CSS-%E5%8B%95%E7%95%AB%E4%B9%8B-Animation/" target="_self">
-                <span>Next</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
-            
           </div>
         </div>
       
@@ -243,7 +275,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transition-%E5%B1%AC%E6%80%A7"><span class="toc-text">Transition 屬性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transition-%E8%AA%9E%E6%B3%95%EF%BC%86%E7%A4%BA%E7%AF%84"><span class="toc-text">Transition 語法＆示範</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#keyframes-%E9%97%9C%E9%8D%B5%E5%BD%B1%E6%A0%BC"><span class="toc-text">@keyframes 關鍵影格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Animation-%E5%B1%AC%E6%80%A7"><span class="toc-text">Animation 屬性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Animation-%E8%AA%9E%E6%B3%95%EF%BC%86%E7%A4%BA%E7%AF%84"><span class="toc-text">Animation 語法＆示範</span></a></li></ol>
       
     </div>
   </div>
@@ -547,12 +579,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + CSS%20%E5%8B%95%E7%95%AB%E4%B9%8B%20Transition + '&url=' + hhttps%3A%2F%2Fssutsen.github.io%2F2024%2F06%2F12%2FCSS-%E5%8B%95%E7%95%AB%E4%B9%8BTransition%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + CSS%20%E5%8B%95%E7%95%AB%E4%B9%8B%20Animation + '&url=' + hhttps%3A%2F%2Fssutsen.github.io%2F2024%2F06%2F16%2FCSS-%E5%8B%95%E7%95%AB%E4%B9%8B-Animation%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=hhttps://ssutsen.github.io/2024/06/12/CSS-動畫之Transition/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=hhttps://ssutsen.github.io/2024/06/16/CSS-動畫之-Animation/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
