@@ -13,7 +13,7 @@
   
   <title>
     
-      archive_a: 2024/5 
+      Docker 初認識 
       
       
       |
@@ -104,104 +104,158 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2024</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Docker 初認識</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2024-06-17 15:18:44
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E7%A8%8B%E5%BC%8F/" title="程式">
+                    #程式
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>今天來介紹我一直想要深入了解的主題，相信很多人應該有聽過鼎鼎大名的 Docker，想要學但又因為一堆名詞而卻步（就是我：（<br>今天我們就把 Docker 搞熟吧！🐳<br><img src="https://d1.awsstatic.com/acs/characters/Logos/Docker-Logo_Horizontel_279x131.b8a5c41e56b77706656d61080f6a0217a3ba356d.png" alt="docker" title="docker"></p>
+<h3 id="Docker-簡介"><a href="#Docker-簡介" class="headerlink" title="Docker 簡介"></a>Docker 簡介</h3><blockquote>
+<p>Docker 是一個用於 建構(build) 運行(run) 傳送(share) 應用程序的平台</p>
+</blockquote>
+<p>我們來想像一個情境，在一個前後端分離的專案中，以前端(React)為例，需要安裝 NodeJS、npm 套件，再加上後端自己的啟動環境，甚至有可能還有資料庫，光是要設定這些環境頭都痛了，這時候你就需要 Docker 了</p>
+<p>有了 Docker 就可以把在執行程式需要的環境、第三方套件、啟動命令等打包在一起，以便在任何環境都能正確的運行</p>
+<h3 id="Docker-概念"><a href="#Docker-概念" class="headerlink" title="Docker 概念"></a>Docker 概念</h3><p><img src="/images/docker.png" alt="docker" title="docker"></p>
+<p>先來介紹 Docker 的核心概念</p>
+<ul>
+<li>images（映像檔）：映像檔是一個只讀的模板，他可以創建容器</li>
+<li>containers（容器）：容器提供一個獨立可移植的環境，可以在這個環境執行程式</li>
+</ul>
+<p>以生活中的例子來看，images 像是像是一個食譜，而 containers 就是根據這個食譜做出來的菜，可以根據食譜做出很多道菜，只要都有嚴格按照食譜做，那麼做出來的菜都會是一樣的。<br>如果想把這個食譜分享給別人，就可以把它分享到 registry 上，其他人也可以一起使用。最常見的 registry 是 DockerHub，可以在上面分享或下載 images</p>
+<hr>
+<h3 id="延伸討論"><a href="#延伸討論" class="headerlink" title="延伸討論"></a>延伸討論</h3><p>Docker 和虛擬機的差別<br><img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/docker-vm.JPG" alt="docker" title="docker"><br>上面的圖片比較了 Docker 和虛擬機方式的不同之處，可見容器是在作業系統層面上實作虛擬化，直接使用本地主機的作業系統，而虛擬機則是在硬體上切割成多部虛擬電腦，每一部虛擬電腦都有自己的作業系統、處理器核心、記憶體、儲存體以及網路。</p>
+<hr>
+<p>下一篇會來實作 如何創建和執行 images</p>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Ozb9mZg7MVM">30 分钟 Docker 入门教程</a><br><a target="_blank" rel="noopener" href="https://arc.net/l/quote/preodlxx">什麼是 Docker？</a></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/06/16/CSS-%E5%8B%95%E7%95%AB%E4%B9%8B-Transform/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2024-06-17 15:18:44
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E7%A8%8B%E5%BC%8F/" title="程式">
+                        #程式
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
       
-      <div class="post-item" title="Docker 初認識">
-        <div class="time-m-d">06-17</div>
-        <div class="title">
-          <a href="/2024/06/17/Docker-%E5%88%9D%E8%AA%8D%E8%AD%98/">
-            <span>Docker 初認識</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="CSS 動畫之 Transform">
-        <div class="time-m-d">06-16</div>
-        <div class="title">
-          <a href="/2024/06/16/CSS-%E5%8B%95%E7%95%AB%E4%B9%8B-Transform/">
-            <span>CSS 動畫之 Transform</span>
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-%E7%B0%A1%E4%BB%8B"><span class="toc-text">Docker 簡介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-%E6%A6%82%E5%BF%B5"><span class="toc-text">Docker 概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E8%A8%8E%E8%AB%96"><span class="toc-text">延伸討論</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="CSS 動畫之 Animation">
-        <div class="time-m-d">06-16</div>
-        <div class="title">
-          <a href="/2024/06/16/CSS-%E5%8B%95%E7%95%AB%E4%B9%8B-Animation/">
-            <span>CSS 動畫之 Animation</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSS 動畫之 Transition">
-        <div class="time-m-d">06-12</div>
-        <div class="title">
-          <a href="/2024/06/12/CSS-%E5%8B%95%E7%95%AB%E4%B9%8BTransition/">
-            <span>CSS 動畫之 Transition</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="JavaScript 陣列常見操作">
-        <div class="time-m-d">06-12</div>
-        <div class="title">
-          <a href="/2024/06/12/JavaScript-%E9%99%A3%E5%88%97%E5%B8%B8%E8%A6%8B%E6%93%8D%E4%BD%9C/">
-            <span>JavaScript 陣列常見操作</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="淺談ECMAScript 與 JavaScript">
-        <div class="time-m-d">06-12</div>
-        <div class="title">
-          <a href="/2024/06/12/%E6%B7%BA%E8%AB%87ECMAScript-%E8%88%87-JavaScript/">
-            <span>淺談ECMAScript 與 JavaScript</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="前端工程師之基礎學習">
-        <div class="time-m-d">05-28</div>
-        <div class="title">
-          <a href="/2024/05/28/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%8B%E5%9F%BA%E7%A4%8E%E5%AD%B8%E7%BF%92/">
-            <span>前端工程師之基礎學習</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="一些簡單Hexoのpost指令">
-        <div class="time-m-d">05-27</div>
-        <div class="title">
-          <a href="/2024/05/27/my-first-post/">
-            <span>一些簡單Hexoのpost指令</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">05-27</div>
-        <div class="title">
-          <a href="/2024/05/27/hello-world/">
-            <span>Hello World</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
@@ -474,6 +528,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Docker%20%E5%88%9D%E8%AA%8D%E8%AD%98 + '&url=' + hhttps%3A%2F%2Fssutsen.github.io%2F2024%2F06%2F17%2FDocker-%E5%88%9D%E8%AA%8D%E8%AD%98%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=hhttps://ssutsen.github.io/2024/06/17/Docker-初認識/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
