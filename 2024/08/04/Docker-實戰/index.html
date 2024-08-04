@@ -13,7 +13,7 @@
   
   <title>
     
-      archive_a: 2024/6 
+      Docker 實戰 
       
       
       |
@@ -104,113 +104,174 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2024</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Docker 實戰</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2024-08-04 15:50:28
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E7%A8%8B%E5%BC%8F/" title="程式">
+                    #程式
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>一轉眼竟然過了一個多月，剛好最近要來部署專題的程式碼，今天我們就以專題的前端來示範吧！</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>我的前端是用 React 寫的，所以就用它來當範例吧</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> --platform=linux/amd64 node:<span class="number">18</span>-alpine as build</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> package.json yarn.lock ./</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> yarn</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> . .</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;yarn&quot;</span>, <span class="string">&quot;start&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>上面寫的是一個最基礎的 Dockerfile，那我們就來一行一行看看 👣</p>
+<ol>
+<li><code>FROM</code> -&gt; 第一條指令必須為 <code>FROM</code> 指令 ，用來指定當前 Docker 映像所基於的基礎映像</li>
+</ol>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> &lt;image&gt;</span><br><span class="line"><span class="keyword">FROM</span> &lt;image&gt;:&lt;tag&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><code>WORKDIR</code> -&gt; 為後續的 <code>RUN</code>、<code>CMD</code>、<code>ENTRYPOINT</code> 指令指定工作目錄</li>
+</ol>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> &lt;/path/to/workdir&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><code>COPY</code> -&gt; 將本機的某檔案&#x2F;路徑複製到 docker image 指定路徑(最後面的 . 是指複製到<code>WORKDIR</code>指令設置的目錄 )</li>
+</ol>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">COPY</span><span class="language-bash"> &lt;src&gt; &lt;dest&gt;</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> package.json .</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><code>RUN</code> -&gt; 用於執行建構過程中所需的命令(如範例是執行下載所需的套件)</li>
+</ol>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">RUN</span><span class="language-bash"> &lt;<span class="built_in">command</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><code>CMD</code> -&gt; 指定啟動容器時執行的命令，每個 Dockerfile 只能有一條 <code>CMD</code> 命令</li>
+</ol>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;executable&quot;</span>,<span class="string">&quot;&lt;param1&gt;&quot;</span>,<span class="string">&quot;&lt;param2&gt;&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>以上是在撰寫 dockerfile 的一些基礎操作</p>
+<p>如果想知道更詳細的操作可以參考<a href="%22https://philipzheng.gitbook.io/docker_practice/dockerfile/instructions">這裡</a></p>
+<p>下一篇來介紹用來存放 docker image 的地方 docker hub</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/06/17/Docker-%E5%88%9D%E8%AA%8D%E8%AD%98/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2024-08-04 15:50:28
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E7%A8%8B%E5%BC%8F/" title="程式">
+                        #程式
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
       
-      <div class="post-item" title="Docker 實戰">
-        <div class="time-m-d">08-04</div>
-        <div class="title">
-          <a href="/2024/08/04/Docker-%E5%AF%A6%E6%88%B0/">
-            <span>Docker 實戰</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="Docker 初認識">
-        <div class="time-m-d">06-17</div>
-        <div class="title">
-          <a href="/2024/06/17/Docker-%E5%88%9D%E8%AA%8D%E8%AD%98/">
-            <span>Docker 初認識</span>
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-text">Example</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="CSS 動畫之 Transform">
-        <div class="time-m-d">06-16</div>
-        <div class="title">
-          <a href="/2024/06/16/CSS-%E5%8B%95%E7%95%AB%E4%B9%8B-Transform/">
-            <span>CSS 動畫之 Transform</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSS 動畫之 Animation">
-        <div class="time-m-d">06-16</div>
-        <div class="title">
-          <a href="/2024/06/16/CSS-%E5%8B%95%E7%95%AB%E4%B9%8B-Animation/">
-            <span>CSS 動畫之 Animation</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="CSS 動畫之 Transition">
-        <div class="time-m-d">06-12</div>
-        <div class="title">
-          <a href="/2024/06/12/CSS-%E5%8B%95%E7%95%AB%E4%B9%8BTransition/">
-            <span>CSS 動畫之 Transition</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="JavaScript 陣列常見操作">
-        <div class="time-m-d">06-12</div>
-        <div class="title">
-          <a href="/2024/06/12/JavaScript-%E9%99%A3%E5%88%97%E5%B8%B8%E8%A6%8B%E6%93%8D%E4%BD%9C/">
-            <span>JavaScript 陣列常見操作</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="淺談ECMAScript 與 JavaScript">
-        <div class="time-m-d">06-12</div>
-        <div class="title">
-          <a href="/2024/06/12/%E6%B7%BA%E8%AB%87ECMAScript-%E8%88%87-JavaScript/">
-            <span>淺談ECMAScript 與 JavaScript</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="前端工程師之基礎學習">
-        <div class="time-m-d">05-28</div>
-        <div class="title">
-          <a href="/2024/05/28/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%B8%AB%E4%B9%8B%E5%9F%BA%E7%A4%8E%E5%AD%B8%E7%BF%92/">
-            <span>前端工程師之基礎學習</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="一些簡單Hexoのpost指令">
-        <div class="time-m-d">05-27</div>
-        <div class="title">
-          <a href="/2024/05/27/my-first-post/">
-            <span>一些簡單Hexoのpost指令</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">05-27</div>
-        <div class="title">
-          <a href="/2024/05/27/hello-world/">
-            <span>Hello World</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
@@ -483,6 +544,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Docker%20%E5%AF%A6%E6%88%B0 + '&url=' + hhttps%3A%2F%2Fssutsen.github.io%2F2024%2F08%2F04%2FDocker-%E5%AF%A6%E6%88%B0%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=hhttps://ssutsen.github.io/2024/08/04/Docker-實戰/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
