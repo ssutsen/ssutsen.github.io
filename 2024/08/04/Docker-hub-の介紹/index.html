@@ -13,7 +13,7 @@
   
   <title>
     
-      Docker 初認識 
+      Docker hub の介紹 
       
       
       |
@@ -149,51 +149,46 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">Docker 初認識</div>
+      <div class="post-title">Docker hub の介紹</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2024-08-04 16:04:40
+          2024-08-04 16:35:44
         </span>
         
-              <span class="post-tags">
-                <i class="iconfont icon-tags mr-10" title="Tags"></i>
-                
-                <span class="span--tag mr-8">
-                  <a href="/tags/%E7%A8%8B%E5%BC%8F/" title="程式">
-                    #程式
-                  </a>
-                </span>
-                
-              </span>
-          
       </div>
       <div class="markdown-body">
-        <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>今天來介紹我一直想要深入了解的主題，相信很多人應該有聽過鼎鼎大名的 Docker，想要學但又因為一堆名詞而卻步（就是我：（<br>今天我們就把 Docker 搞熟吧！🐳<br><img src="https://d1.awsstatic.com/acs/characters/Logos/Docker-Logo_Horizontel_279x131.b8a5c41e56b77706656d61080f6a0217a3ba356d.png" alt="docker" title="docker"></p>
-<h3 id="Docker-簡介"><a href="#Docker-簡介" class="headerlink" title="Docker 簡介"></a>Docker 簡介</h3><blockquote>
-<p>Docker 是一個用於 建構(build) 運行(run) 傳送(share) 應用程序的平台</p>
-</blockquote>
-<p>我們來想像一個情境，在一個前後端分離的專案中，以前端(React)為例，需要安裝 NodeJS、npm 套件，再加上後端自己的啟動環境，甚至有可能還有資料庫，光是要設定這些環境頭都痛了，這時候你就需要 Docker 了</p>
-<p>有了 Docker 就可以把在執行程式需要的環境、第三方套件、啟動命令等打包在一起，以便在任何環境都能正確的運行</p>
-<h3 id="Docker-概念"><a href="#Docker-概念" class="headerlink" title="Docker 概念"></a>Docker 概念</h3><p><img src="/images/docker.png" alt="docker" title="docker"></p>
-<p>先來介紹 Docker 的核心概念</p>
-<ul>
-<li>images（映像檔）：映像檔是一個只讀的模板，他可以創建容器</li>
-<li>containers（容器）：容器提供一個獨立可移植的環境，可以在這個環境執行程式</li>
+        <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>Docker Hub 是一個可以用來存放 image 的空間<br>那我們就直接帶大家把<a href="%22https://ssutsen.github.io/2024/08/04/Docker-%E5%AF%A6%E6%88%B0/%22">上一篇</a>寫好的 image 來放上去</p>
+<h3 id="建立-Docker-Repository"><a href="#建立-Docker-Repository" class="headerlink" title="建立 Docker Repository"></a>建立 Docker Repository</h3><p>登入的步驟我們就直接跳過了，還沒有帳號的可以先去建一個</p>
+<p>我們首先先建一個 Repository 步驟跟 github 很像<br>點選 create Repository<br><img src="/images/Capture-2024-08-04-160240.png" alt="repository" title="repository"><br>輸入 Repository 名稱 選擇公開還是私人的（免費方案的只有提供一個私人的空間）<br><img src="/images/Capture-2024-08-04-160700.png" alt="repository"></p>
+<p>提交之後可以在這個頁面上看到這個 repository 的資訊，包括等等要上傳的 image<br><img src="/images/Capture-2024-08-04-161114.png" alt="repository"></p>
+<h3 id="上傳-Docker-Image"><a href="#上傳-Docker-Image" class="headerlink" title="上傳 Docker Image"></a>上傳 Docker Image</h3><ul>
+<li>在終端機上輸入<code>docker image ls</code> 可以看到本機上有的 image</li>
 </ul>
-<p>以生活中的例子來看，images 像是像是一個食譜，而 containers 就是根據這個食譜做出來的菜，可以根據食譜做出很多道菜，只要都有嚴格按照食譜做，那麼做出來的菜都會是一樣的。<br>如果想把這個食譜分享給別人，就可以把它分享到 registry 上，其他人也可以一起使用。最常見的 registry 是 DockerHub，可以在上面分享或下載 images</p>
+<p><img src="/images/2024-08-04-16.15.58.png" alt="image"></p>
+<ul>
+<li>使用<code>docker tag</code>指令，後面加 Image ID 和 repository([:tag]可省略，預設會是 latest)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]</span><br><span class="line"></span><br><span class="line">$ docker tag 7c9927c17190 xxbxx/pantrypal_demo:v0.1.0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>執行完成後再輸入一次<code>docker image ls</code> 就會看到 repository 也被加進來了<br><img src="/images/2024-08-04-16.27.16.png" alt="image"></p>
+</li>
+<li><p>最後，使用<code>docker push</code>上傳到 docker hub，就完成了</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker push xxbxx/pantrypal_demo</span><br></pre></td></tr></table></figure>
+
+<p>可以看到 repository 上有上傳過的 tags 了<br><img src="/images/Capture-2024-08-04-163157.png" alt="tag"></p>
 <hr>
-<h3 id="延伸討論"><a href="#延伸討論" class="headerlink" title="延伸討論"></a>延伸討論</h3><p>Docker 和虛擬機的差別<br><img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/docker-vm.JPG" alt="docker" title="docker"><br>上面的圖片比較了 Docker 和虛擬機方式的不同之處，可見容器是在作業系統層面上實作虛擬化，直接使用本地主機的作業系統，而虛擬機則是在硬體上切割成多部虛擬電腦，每一部虛擬電腦都有自己的作業系統、處理器核心、記憶體、儲存體以及網路。</p>
-<hr>
-<p>下一篇會來實作 如何創建和執行 images</p>
-<p>參考資料：<br><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Ozb9mZg7MVM">30 分钟 Docker 入门教程</a><br><a target="_blank" rel="noopener" href="https://arc.net/l/quote/preodlxx">什麼是 Docker？</a></p>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/m/articles/10192824">[Day 4] 上傳 Docker Image 到 Docker Hub</a></p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/06/16/CSS-%E5%8B%95%E7%95%AB%E4%B9%8B-Transform/" target="_self">
+              <a href="/2024/08/04/Docker-%E5%AF%A6%E6%88%B0/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>Prev</span>
               </a>
@@ -202,27 +197,11 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-              2024-08-04 16:04:40
+              2024-08-04 16:35:44
             </span>
             
-                  <span class="post-tags">
-                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
-                    
-                    <span class="span--tag mr-8">
-                      <a href="/tags/%E7%A8%8B%E5%BC%8F/" title="程式">
-                        #程式
-                      </a>
-                    </span>
-                    
-                  </span>
-              
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/2024/08/04/Docker-%E5%AF%A6%E6%88%B0/" target="_self">
-                <span>Next</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -236,7 +215,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-%E7%B0%A1%E4%BB%8B"><span class="toc-text">Docker 簡介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker-%E6%A6%82%E5%BF%B5"><span class="toc-text">Docker 概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E8%A8%8E%E8%AB%96"><span class="toc-text">延伸討論</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B-Docker-Repository"><span class="toc-text">建立 Docker Repository</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E5%82%B3-Docker-Image"><span class="toc-text">上傳 Docker Image</span></a></li></ol>
       
     </div>
   </div>
@@ -540,12 +519,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Docker%20%E5%88%9D%E8%AA%8D%E8%AD%98 + '&url=' + hhttps%3A%2F%2Fssutsen.github.io%2F2024%2F06%2F17%2FDocker-%E5%88%9D%E8%AA%8D%E8%AD%98%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Docker%20hub%20%E3%81%AE%E4%BB%8B%E7%B4%B9 + '&url=' + hhttps%3A%2F%2Fssutsen.github.io%2F2024%2F08%2F04%2FDocker-hub-%E3%81%AE%E4%BB%8B%E7%B4%B9%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=hhttps://ssutsen.github.io/2024/06/17/Docker-初認識/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=hhttps://ssutsen.github.io/2024/08/04/Docker-hub-の介紹/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
