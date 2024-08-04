@@ -153,7 +153,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-          2024-08-04 15:50:28
+          2024-08-04 21:09:30
         </span>
         
               <span class="post-tags">
@@ -199,6 +199,20 @@
 </ol>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;executable&quot;</span>,<span class="string">&quot;&lt;param1&gt;&quot;</span>,<span class="string">&quot;&lt;param2&gt;&quot;</span>]</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="build-image"><a href="#build-image" class="headerlink" title="build image"></a>build image</h3><ul>
+<li>執行<code>docker build</code> 然後就會看到他開始執行 Dockerfile</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t pantrypal_0.1.0 .</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2024-08-04-21.01.39.png" alt="build"></p>
+<ul>
+<li><p><code>docker image ls</code>來確認是否 build 成功<br><img src="/images/2024-08-04-16.15.58.png" alt="image"></p>
+</li>
+<li><p><code>docker run</code>來執行 image</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run pantrypal_0.1.0</span><br></pre></td></tr></table></figure>
+
 <hr>
 <p>以上是在撰寫 dockerfile 的一些基礎操作</p>
 <p>如果想知道更詳細的操作可以參考<a href="%22https://philipzheng.gitbook.io/docker_practice/dockerfile/instructions">這裡</a></p>
@@ -218,7 +232,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
-              2024-08-04 15:50:28
+              2024-08-04 21:09:30
             </span>
             
                   <span class="post-tags">
@@ -252,7 +266,7 @@
     <div class="title">Contents</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-text">Example</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-text">Example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#build-image"><span class="toc-text">build image</span></a></li></ol>
       
     </div>
   </div>
