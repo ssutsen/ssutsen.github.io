@@ -10,10 +10,13 @@
   <!-- 用于搜索引擎的文章摘要 -->
   
   
-    <meta name="robots" content="noindex" />
-  
   
   <title>
+    
+      專題最後一哩路的隨手小記 
+      
+      
+      |
     
      bebe blog
   </title>
@@ -101,45 +104,131 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="一些簡單Hexoのpost指令">
-        <div class="time-m-d">2024-05-27</div>
-        <div class="title">
-          <a href="/2024/05/27/my-first-post/">
-            
-              
-                <span>一些簡單Hexoのpost指令</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">專題最後一哩路的隨手小記</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+          2024-12-25 15:39:57
+        </span>
+        
       </div>
-    
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">2024-05-27</div>
-        <div class="title">
-          <a href="/2024/05/27/hello-world/">
+      <div class="markdown-body">
+        <h3 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h3><p>如標題，這是專題最後最重要的事(其實是想讓 google oauth 通過)<br>因為我們的專題是一個網頁，所以想讓整題更完整，勢必是要來買一個域名看起來更專業：）<br>今天就是要來記錄買域名的過程！</p>
+<h3 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h3><p>我們的程式是部署在 render 上（免費的超讚～）<br>然後在 GoDaddy 上挑了一個跟我們名字最符合的的域名<br>接著就可以進入我們今天的重點 -&gt;</p>
+<h3 id="CNAME-A-record"><a href="#CNAME-A-record" class="headerlink" title="CNAME &amp; A record"></a>CNAME &amp; A record</h3><p>我們先來介紹兩個有關 DNS 的名詞 - <code>CNAME</code> &amp; <code>A record</code><br>根據維基百科，<code>CNAME</code> 是域名系統（DNS）的一種記錄。<code>CNAME</code> 是將多個域名指向同一個域名（真實名稱）<br><code>A record</code> 的「A」代表「Address」，表示給定網域的 IP 位址。<br><img src="/images/cname.png" alt="cname" title="cname"><br>以上圖的例子來說，當要查詢 bar.example.com 的 A record 時，域名解析器會查到對應的 CNAME 記錄，即 foo.example.com，隨即開始查詢該域名的 A 記錄，查到 192.0.2.23 則返回結果。</p>
+<blockquote>
+<p>bar.example.com 的「CNAME」是 foo.example.com（左側標籤是右側真實名稱的一個同名）</p>
+</blockquote>
+<h3 id="實際操作"><a href="#實際操作" class="headerlink" title="實際操作"></a>實際操作</h3><p>剛才有提到我們專題是使用 render 和 GoDaddy，那設定 DNS 的方法其實很簡單，將購買的網域填到 render 的 <code>Custom Domains</code>內，會生出一段主機位只需要填到 GoDaddy DNS 設定中的類型 A，再將前端部署完的那端網址放到名稱<code>www</code></p>
+<p><img src="/images/renderDNS.png" alt="DNS" title="DNS"><br><img src="/images/godaddy.png" alt="godaddy" title="godaddy"></p>
+<blockquote>
+<p>「@」符號表示這是根網域的記錄<br>「TTL(存留時間)」這意味著如果 A 記錄被更新，則需要 600 秒才能生效。</p>
+</blockquote>
+<hr>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://medium.com/%E4%B8%80%E5%80%8B%E4%BA%BA%E7%9A%84%E6%96%87%E8%97%9D%E5%BE%A9%E8%88%88/pm%E7%AD%86%E8%A8%98-https-a%E7%B4%80%E9%8C%84%E8%88%87cname-91f6f2a1ee2f">PM 筆記：HTTPS、A 紀錄與 CNAME</a><br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/CNAME%E8%AE%B0%E5%BD%95">維基百科</a><br><a target="_blank" rel="noopener" href="https://www.cloudflare.com/zh-tw/learning/dns/dns-records/dns-a-record/">什麼是 DNS A 記錄？</a></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>Hello World</span>
-              
+              <a href="/2024/08/04/Docker-hub-%E3%81%AE%E4%BB%8B%E7%B4%B9/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
+              2024-12-25 15:39:57
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
+      
+    </div>
+    
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">Contents</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Intro"><span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E6%83%85%E6%8F%90%E8%A6%81"><span class="toc-text">前情提要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CNAME-A-record"><span class="toc-text">CNAME &amp; A record</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%A6%E9%9A%9B%E6%93%8D%E4%BD%9C"><span class="toc-text">實際操作</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-      <a href="/"><i class="iconfont icon-angleleft"></i></a>
-    
-    <span class="page-num">2 / 2</span>
-    
-  </nav>
-</div>
+
 
         
 <div class="footer">
@@ -412,6 +501,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%B0%88%E9%A1%8C%E6%9C%80%E5%BE%8C%E4%B8%80%E5%93%A9%E8%B7%AF%E7%9A%84%E9%9A%A8%E6%89%8B%E5%B0%8F%E8%A8%98 + '&url=' + hhttps%3A%2F%2Fssutsen.github.io%2F2024%2F12%2F25%2F%E5%B0%88%E9%A1%8C%E6%9C%80%E5%BE%8C%E4%B8%80%E5%93%A9%E8%B7%AF%E7%9A%84%E9%9A%A8%E6%89%8B%E5%B0%8F%E8%A8%98%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=hhttps://ssutsen.github.io/2024/12/25/專題最後一哩路的隨手小記/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
